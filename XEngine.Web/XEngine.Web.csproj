@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -113,12 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -170,11 +172,28 @@
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="DAL\XEngineContext.cs" />
     <Compile Include="DAL\XEngineInitializer.cs" />
+    <Compile Include="Extensions\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806130400105_InitialCreate.cs" />
+    <Compile Include="Migrations\201806130400105_InitialCreate.Designer.cs">
+      <DependentUpon>201806130400105_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806150303179_InitialCreate1.cs" />
+    <Compile Include="Migrations\201806150303179_InitialCreate1.Designer.cs">
+      <DependentUpon>201806150303179_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806150307578_ColumnLoginName.cs" />
+    <Compile Include="Migrations\201806150307578_ColumnLoginName.Designer.cs">
+      <DependentUpon>201806150307578_ColumnLoginName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806150310329_MaxLengthOnNames.cs" />
+    <Compile Include="Migrations\201806150310329_MaxLengthOnNames.Designer.cs">
+      <DependentUpon>201806150310329_MaxLengthOnNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SysRole.cs" />
     <Compile Include="Models\SysUser.cs" />
     <Compile Include="Models\SysUserRole.cs" />
@@ -184,8 +203,14 @@
     <Compile Include="Repositories\ISysUserRepository.cs" />
     <Compile Include="Repositories\SysUserRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\EncryptDecrypt.cs" />
+    <Compile Include="Utility\GetXMLRoles.cs" />
+    <Compile Include="Utility\MenuHelper\MenuHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\ActionRoles.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -239,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Utility\MenuHelper\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -248,10 +274,18 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utility\Utility.csproj">
-      <Project>{b2073779-00b0-428a-97a8-b8814f33a6d8}</Project>
-      <Name>Utility</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201806130400105_InitialCreate.resx">
+      <DependentUpon>201806130400105_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806150303179_InitialCreate1.resx">
+      <DependentUpon>201806150303179_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806150307578_ColumnLoginName.resx">
+      <DependentUpon>201806150307578_ColumnLoginName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806150310329_MaxLengthOnNames.resx">
+      <DependentUpon>201806150310329_MaxLengthOnNames.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

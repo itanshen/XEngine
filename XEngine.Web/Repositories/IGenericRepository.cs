@@ -19,6 +19,5 @@ namespace XEngine.Web.Repositories
         void Delete(object id);
         void Update(TEntity entity);
 
-        //void Save();
     }
 }

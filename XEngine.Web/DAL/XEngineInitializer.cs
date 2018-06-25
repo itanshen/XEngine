@@ -11,9 +11,9 @@ namespace XEngine.Web.DAL
         protected override void Seed(XEngineContext context)
         {
             var sysUsers = new List<SysUser> { 
-                new SysUser{ID=1,Name="ZS",CName="张三",Email="zs@xengine.com",Password="1",ModifiedDate=DateTime.Now},
-                new SysUser{ID=2,Name="LS",CName="李四",Email="ls@xengine.com",Password="1",ModifiedDate=DateTime.Now},
-                new SysUser{ID=3,Name="WW",CName="王五",Email="ww@xengine.com",Password="1",ModifiedDate=DateTime.Now}
+                new SysUser{ID=1,UserName="ZS",CName="张三",Email="zs@xengine.com",Password="1",ModifiedDate=DateTime.Now},
+                new SysUser{ID=2,UserName="LS",CName="李四",Email="ls@xengine.com",Password="1",ModifiedDate=DateTime.Now},
+                new SysUser{ID=3,UserName="WW",CName="王五",Email="ww@xengine.com",Password="1",ModifiedDate=DateTime.Now}
             };
             sysUsers.ForEach(s => context.SysUsers.Add(s));
             context.SaveChanges();

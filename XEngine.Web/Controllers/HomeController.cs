@@ -4,18 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using XEngine.Web.DAL;
+using XEngine.Web.Extensions;
 
 namespace XEngine.Web.Controllers
 {
+    //[CustomAuthorize]
     public class HomeController : Controller
     {
         private XEngineContext db = new XEngineContext();
+
         public ActionResult Index()
         {
             var user = db.SysRoles.Count();
             return View();
         }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

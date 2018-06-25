@@ -42,15 +42,15 @@ namespace XEngine.Web.Controllers
             var users = unitOfWork.SysUserRepository.Get();
             if (!string.IsNullOrEmpty(searchString))
             {
-                users = users.Where(u => u.Name.Contains(searchString)).ToList();
+                users = users.Where(u => u.UserName.Contains(searchString)).ToList();
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    users = users.OrderByDescending(u => u.Name).ToList();
+                    users = users.OrderByDescending(u => u.UserName).ToList();
                     break;
                 default:
-                    users = users.OrderBy(u => u.Name).ToList();
+                    users = users.OrderBy(u => u.UserName).ToList();
                     break;
             }
             int pageSize = 2;

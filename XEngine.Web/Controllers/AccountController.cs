@@ -11,10 +11,11 @@ using Microsoft.Owin.Security;
 using XEngine.Web.Models;
 using System.Web.Security;
 using XEngine.Web.DAL;
+using XEngine.Web.Utility;
+using XEngine.Web.Extensions;
 
 namespace XEngine.Web.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
@@ -33,19 +34,19 @@ namespace XEngine.Web.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection fc)
         {
-            string userName = fc["inputUserName"];
-            string password = fc["inputPassword"];
-            string encryptPwd = Utility.EncryptDecrypt.EncryptString(password);
-            bool rememberMe = fc["ckbRememberMe"] == null ? false : true;
+            string userName = fc["UserName"];
+            string password = fc["Password"];
+            string encryptPwd = EncryptDecrypt.EncryptString(password);
+            bool rememberMe = fc["RememberMe"] == null ? false : true;
             string returnUrl = Convert.ToString(TempData["ReturnUrl"]);
 
-            SysUser user = unitOfWork.SysUserRepository.Get(filter: u => u.Name == userName
+            SysUser user = unitOfWork.SysUserRepository.Get(filter: u => u.UserName == userName
                 && (u.Password == password || u.Password == encryptPwd)).FirstOrDefault();
             unitOfWork.Dispose();
 
             if (user != null)
             {
-                FormsAuthentication.SetAuthCookie(userName, rememberMe);
+                FormsAuthentication.SetAuthCookie(user.UserName, rememberMe);
                 if (!string.IsNullOrEmpty(returnUrl))
                 {
                     return Redirect(returnUrl);
@@ -63,10 +64,24 @@ namespace XEngine.Web.Controllers
             return View();
         }
 
-        public ActionResult Logout()
+        public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(SysUser user)
+        {
+            user.Password = EncryptDecrypt.EncryptString(user.Password);
+            user.ModifiedDate = DateTime.Now;
+            unitOfWork.SysUserRepository.Insert(user);
+            unitOfWork.Save();
+            return View();
         }
 
     }
