@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MvcSiteMaps>
+  <MvcSiteMap ParentID="0" Name="主页" Url="/XEngine/" ID="1"></MvcSiteMap>
+  <MvcSiteMap ParentID="1" Name="组织" Url="/XEngine/Organization" ID="2"></MvcSiteMap>
+  <MvcSiteMap ParentID="2" Name="关于" Url="/XEngine/Home/About" ID="3"></MvcSiteMap>
+</MvcSiteMaps>

@@ -48,8 +48,10 @@ namespace XEngine.Web.Utility.MenuHelper
 
             MenuViewModel<SysMenu> model = new MenuViewModel<SysMenu>();
 
+            IEnumerable<SysMenu> menusAll = unitOfWork.SysMenuRepository.Get();
+
             // 1. 根据menuName获取开始的根菜单
-            SysMenu itemRoot = unitOfWork.SysMenuRepository.Get(filter: m => m.Name == menuName).FirstOrDefault();
+            SysMenu itemRoot = menusAll.Where(o => o.Name == menuName).FirstOrDefault();
 
             #region MyRegion
             //           var itemRoots = unitOfWork.SysMenuRepository.Get(filter: m => m.MenuType == MenuTypeOption.Top);
@@ -77,12 +79,12 @@ namespace XEngine.Web.Utility.MenuHelper
             {
                 // 2. 依次添加枝叶菜单
                 // 2.1 获取itemRoot的所有子菜单
-                IEnumerable<SysMenu> menus = unitOfWork.SysMenuRepository.Get(filter: m => m.ParentID == itemRoot.ID);
+                IEnumerable<SysMenu> menus = menusAll.Where(m => m.ParentID == itemRoot.ID);
                 // 2.2 对每个子菜单进行递归循环
                 foreach (var item in menus)
                 {
                     itemRoot.MenuChildren.Add(item);
-                    AddChildNode(item);
+                    AddChildNode(item, menusAll);
                 }
             }
 
@@ -94,14 +96,14 @@ namespace XEngine.Web.Utility.MenuHelper
         /// 找到menu的所有子成员并添加，递归出调用本身
         /// </summary>
         /// <param name="menu"></param>
-        public static void AddChildNode(SysMenu menu)
+        public static void AddChildNode(SysMenu menu, IEnumerable<SysMenu> menusAll)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            var menus = unitOfWork.SysMenuRepository.Get(filter: m => m.ParentID == menu.ID);
+            //UnitOfWork unitOfWork = new UnitOfWork();
+            var menus = menusAll.Where(m => m.ParentID == menu.ID);
             foreach (var item in menus)
             {
                 menu.MenuChildren.Add(item);
-                AddChildNode(item);
+                AddChildNode(item, menusAll);
             }
         }
 

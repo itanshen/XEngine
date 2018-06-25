@@ -173,6 +173,7 @@
     <Compile Include="DAL\XEngineContext.cs" />
     <Compile Include="DAL\XEngineInitializer.cs" />
     <Compile Include="IItem.cs" />
+    <Compile Include="Models\MvcSiteMaps.cs" />
     <Compile Include="Utility\Filter\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,6 +242,7 @@
     <Content Include="Config\ActionRoles.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Config\MvcSiteMap.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
