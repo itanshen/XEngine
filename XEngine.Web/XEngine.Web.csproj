@@ -172,7 +172,8 @@
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="DAL\XEngineContext.cs" />
     <Compile Include="DAL\XEngineInitializer.cs" />
-    <Compile Include="Extensions\CustomAuthorizeAttribute.cs" />
+    <Compile Include="IItem.cs" />
+    <Compile Include="Utility\Filter\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,8 +193,33 @@
     <Compile Include="Migrations\201806150310329_MaxLengthOnNames.Designer.cs">
       <DependentUpon>201806150310329_MaxLengthOnNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806250405093_AddSysMenu.cs" />
+    <Compile Include="Migrations\201806250405093_AddSysMenu.Designer.cs">
+      <DependentUpon>201806250405093_AddSysMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250409112_MaxLengthOnNames1.cs" />
+    <Compile Include="Migrations\201806250409112_MaxLengthOnNames1.Designer.cs">
+      <DependentUpon>201806250409112_MaxLengthOnNames1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250412506_AddCreateDateToSysUser.cs" />
+    <Compile Include="Migrations\201806250412506_AddCreateDateToSysUser.Designer.cs">
+      <DependentUpon>201806250412506_AddCreateDateToSysUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250419156_AddSysMenuClass.cs" />
+    <Compile Include="Migrations\201806250419156_AddSysMenuClass.Designer.cs">
+      <DependentUpon>201806250419156_AddSysMenuClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250420295_AddSysMenuClass1.cs" />
+    <Compile Include="Migrations\201806250420295_AddSysMenuClass1.Designer.cs">
+      <DependentUpon>201806250420295_AddSysMenuClass1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250438190_AddSysMenuClass2.cs" />
+    <Compile Include="Migrations\201806250438190_AddSysMenuClass2.Designer.cs">
+      <DependentUpon>201806250438190_AddSysMenuClass2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\SysMenu.cs" />
     <Compile Include="Models\SysRole.cs" />
     <Compile Include="Models\SysUser.cs" />
     <Compile Include="Models\SysUserRole.cs" />
@@ -204,8 +230,12 @@
     <Compile Include="Repositories\SysUserRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\EncryptDecrypt.cs" />
-    <Compile Include="Utility\GetXMLRoles.cs" />
+    <Compile Include="Utility\Filter\GetXMLRoles.cs" />
+    <Compile Include="Utility\MenuHelper\Base\BaseHtmlTagEngine.cs" />
+    <Compile Include="Utility\MenuHelper\Base\TagContainer.cs" />
+    <Compile Include="Utility\MenuHelper\HtmlBuilder.cs" />
     <Compile Include="Utility\MenuHelper\MenuHelper.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\ActionRoles.xml">
@@ -264,7 +294,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Utility\MenuHelper\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -285,6 +314,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806150310329_MaxLengthOnNames.resx">
       <DependentUpon>201806150310329_MaxLengthOnNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250405093_AddSysMenu.resx">
+      <DependentUpon>201806250405093_AddSysMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250409112_MaxLengthOnNames1.resx">
+      <DependentUpon>201806250409112_MaxLengthOnNames1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250412506_AddCreateDateToSysUser.resx">
+      <DependentUpon>201806250412506_AddCreateDateToSysUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250419156_AddSysMenuClass.resx">
+      <DependentUpon>201806250419156_AddSysMenuClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250420295_AddSysMenuClass1.resx">
+      <DependentUpon>201806250420295_AddSysMenuClass1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250438190_AddSysMenuClass2.resx">
+      <DependentUpon>201806250438190_AddSysMenuClass2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

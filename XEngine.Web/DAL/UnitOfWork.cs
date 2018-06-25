@@ -14,6 +14,7 @@ namespace XEngine.Web.DAL
         private GenericRepository<SysUser> sysUserRepository;
         private GenericRepository<SysRole> sysRoleRepository;
         private GenericRepository<SysUserRole> sysUserRoleRepository;
+        private GenericRepository<SysMenu> sysMenuRepository;
 
         public GenericRepository<SysUser> SysUserRepository
         {
@@ -46,6 +47,17 @@ namespace XEngine.Web.DAL
                     this.sysUserRoleRepository = new GenericRepository<SysUserRole>(context);
                 }
                 return sysUserRoleRepository;
+            }
+        }
+        public GenericRepository<SysMenu> SysMenuRepository
+        {
+            get
+            {
+                if (this.sysMenuRepository == null)
+                {
+                    this.sysMenuRepository = new GenericRepository<SysMenu>(context);
+                }
+                return sysMenuRepository;
             }
         }
 

@@ -17,6 +17,7 @@ namespace XEngine.Web.DAL
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<SysRole> SysRoles { get; set; }
         public DbSet<SysUserRole> SysUserRoles { get; set; }
+        public DbSet<SysMenu> SysMenus { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

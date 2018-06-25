@@ -8,7 +8,7 @@ using XEngine.Web.Utility;
 using System.Data.Entity;
 using XEngine.Web.DAL;
 
-namespace XEngine.Web.Extensions
+namespace XEngine.Web.Utility.Filter
 {
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
@@ -44,7 +44,7 @@ namespace XEngine.Web.Extensions
                 return false;
             }
             #region 确定当前用户角色是否属于指定的角色
-            string query = "select Name from SysRole where id in(select SysRoleId from SysUserRole where SysUserId in (select id from SysUser where Name=@userName))";
+            string query = "select Name from SysRole where id in(select SysRoleId from SysUserRole where SysUserId in (select id from SysUser where UserName=@userName))";
             string currentUser = httpContext.User.Identity.Name;
             SqlParameter[] para = new SqlParameter[] { 
             new SqlParameter("@userName",currentUser)

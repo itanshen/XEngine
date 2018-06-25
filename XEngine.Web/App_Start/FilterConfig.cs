@@ -9,7 +9,7 @@ namespace XEngine.Web
         {
             filters.Add(new HandleErrorAttribute());
 
-            filters.Add(new XEngine.Web.Extensions.CustomAuthorizeAttribute());
+            filters.Add(new XEngine.Web.Utility.Filter.CustomAuthorizeAttribute());
 
         }
     }

@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using XEngine.Web.Utility.MenuHelper
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
@@ -21,11 +22,13 @@
                 </button>
                 @Html.ActionLink("XEngine", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("主页", "Index", "Home")</li>
                     <li>@Html.ActionLink("关于", "About", "Home")</li>
                     <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                    @Html.Raw(@Html.GetMenuHtml("MenuTest"))
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
-namespace XEngine.Web.Utility
+namespace XEngine.Web.Utility.Filter
 {
     public static class GetXMLRoles
     {

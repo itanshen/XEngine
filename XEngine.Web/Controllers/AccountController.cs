@@ -12,7 +12,6 @@ using XEngine.Web.Models;
 using System.Web.Security;
 using XEngine.Web.DAL;
 using XEngine.Web.Utility;
-using XEngine.Web.Extensions;
 
 namespace XEngine.Web.Controllers
 {
