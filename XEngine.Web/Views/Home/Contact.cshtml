@@ -1,6 +1,18 @@
-﻿@{
+﻿@using XEngine.Web.Utility.BreadCrumbSiteMap
+@{
     ViewBag.Title = "Contact";
 }
+<div>
+    @{
+        if (Html.PopulateBreadcrumb(Request.Url.AbsolutePath).ToString() != "")
+        {
+            <ol class="breadcrumb">
+                @Html.PopulateBreadcrumb(Request.Url.AbsolutePath)
+            </ol>
+        }
+    }
+</div>
+
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 

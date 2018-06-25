@@ -51,7 +51,7 @@ namespace XEngine.Web.Utility.MenuHelper
             IEnumerable<SysMenu> menusAll = unitOfWork.SysMenuRepository.Get();
 
             // 1. 根据menuName获取开始的根菜单
-            SysMenu itemRoot = menusAll.Where(o => o.Name == menuName).FirstOrDefault();
+            SysMenu itemRoot = menusAll.FirstOrDefault(o => o.Name == menuName);
 
             #region MyRegion
             //           var itemRoots = unitOfWork.SysMenuRepository.Get(filter: m => m.MenuType == MenuTypeOption.Top);
