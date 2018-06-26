@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@section scripts{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-jtemplates.js")"></script>
+}
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -29,3 +31,66 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+<input type="button" value="Search" id="btnSearch" />
+<div class="panel_body">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>CName</th>
+                <th>ModifiedDate</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="divUsers"></tbody>
+    </table>
+</div>
+
+<textarea id="template_list" class="hidden">
+    {#foreach $T.list as record}
+    <tr>
+        <td>{$T.record.UserName}</td>
+        <td>{$T.record.Email}</td>
+        <td>{$T.record.CName}</td>
+        <td>{$T.record.ModifiedDate}</td>
+        <td>{$T.record.Id}</td>
+    </tr>
+    {#/for}
+</textarea>
+
+<script>
+    $(function () {
+        $("#btnSearch").click(function () {
+            var dto = {
+                userName: "a",
+                x: Math.random()
+            };
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "/Home/AjaxTest",
+                data: JSON.stringify(dto),
+                dataType: "json",
+                //beforeSend: function () {
+                //    idx = layer.load();
+                //},
+                success: function (data) {
+                    var json = data;
+                    if (json.err == "null") {
+                        $("#divUsers").setTemplateElement("template_list", null, { filter_data: false });
+                        $("#divUsers").processTemplate(json);
+                    }
+
+                },
+                //complete: function () {
+                //    layer.close(idx);
+                //},
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+
+    });
+</script>
