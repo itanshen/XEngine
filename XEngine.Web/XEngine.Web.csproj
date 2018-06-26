@@ -48,6 +48,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.1\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -173,7 +179,11 @@
     <Compile Include="DAL\XEngineContext.cs" />
     <Compile Include="DAL\XEngineInitializer.cs" />
     <Compile Include="IItem.cs" />
+    <Compile Include="Models\IWeapon.cs" />
     <Compile Include="Models\MvcSiteMaps.cs" />
+    <Compile Include="Models\Samurai.cs" />
+    <Compile Include="Models\Shuriken.cs" />
+    <Compile Include="Models\Sword.cs" />
     <Compile Include="Utility\BreadCrumbSiteMap\MvcSiteMapExtensions.cs" />
     <Compile Include="Utility\BreadCrumbSiteMap\MvcSiteMapHelper.cs" />
     <Compile Include="Utility\Filter\CustomAuthorizeAttribute.cs" />
@@ -295,6 +305,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Home\Battle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
