@@ -69,6 +69,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -78,6 +82,14 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -184,12 +196,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyCustomController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="DAL\XEngineContext.cs" />
     <Compile Include="DAL\XEngineInitializer.cs" />
     <Compile Include="IItem.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Migrations\201806270359087_AddIsActiveToSysUser.cs" />
+    <Compile Include="Migrations\201806270359087_AddIsActiveToSysUser.Designer.cs">
+      <DependentUpon>201806270359087_AddIsActiveToSysUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\IWeapon.cs" />
     <Compile Include="Models\MvcSiteMaps.cs" />
     <Compile Include="Models\Samurai.cs" />
@@ -197,6 +214,7 @@
     <Compile Include="Models\Sword.cs" />
     <Compile Include="Utility\BreadCrumbSiteMap\MvcSiteMapExtensions.cs" />
     <Compile Include="Utility\BreadCrumbSiteMap\MvcSiteMapHelper.cs" />
+    <Compile Include="Utility\CustomRedirectResult.cs" />
     <Compile Include="Utility\Filter\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -259,13 +277,17 @@
     <Compile Include="Utility\MenuHelper\Base\TagContainer.cs" />
     <Compile Include="Utility\MenuHelper\HtmlBuilder.cs" />
     <Compile Include="Utility\MenuHelper\MenuHelper.cs" />
+    <Compile Include="ViewModels\AssignedRoleData.cs" />
+    <Compile Include="ViewModels\AssignedUserData.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\ActionRoles.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Config\MvcSiteMapList.xml" />
+    <Content Include="Config\MvcSiteMapList.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -319,10 +341,13 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Home\Battle.cshtml" />
     <Content Include="Views\Account\ManageList.cshtml" />
-    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MyCustom\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -361,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806250438190_AddSysMenuClass2.resx">
       <DependentUpon>201806250438190_AddSysMenuClass2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806270359087_AddIsActiveToSysUser.resx">
+      <DependentUpon>201806270359087_AddIsActiveToSysUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

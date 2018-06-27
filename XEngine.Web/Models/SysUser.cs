@@ -13,11 +13,11 @@ namespace XEngine.Web.Models
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
         public string CName { get; set; }
         public string Description { get; set; }
+        public string IsActive { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public ICollection<SysRole> SysRoles { get; set; }
+        public virtual ICollection<SysUserRole> SysUserRoles { get; set; }
     }
 }

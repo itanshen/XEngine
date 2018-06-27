@@ -1,11 +1,5 @@
-﻿@*@model IEnumerable<XEngine.Web.Models.SysUser>*@
-@using PagedList.Mvc;
+﻿@using PagedList.Mvc;
 @model PagedList.PagedList<XEngine.Web.Models.SysUser>
-
-@{
-    ViewBag.Title = "Index";
-}
-
 <h2>Index</h2>
 
 <p>
@@ -26,9 +20,9 @@
         <th>
             Email
         </th>
-        <th>
+        @*<th>
             Password
-        </th>
+        </th>*@
         <th>
             CName
         </th>
@@ -45,14 +39,14 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Password)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CName)
             </td>
@@ -63,9 +57,9 @@
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                @Html.ActionLink("删除", "Delete", new { id = item.ID })
             </td>
         </tr>
     }

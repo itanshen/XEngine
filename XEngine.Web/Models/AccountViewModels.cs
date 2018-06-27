@@ -48,6 +48,7 @@ namespace XEngine.Web.Models
         [Required]
         [Display(Name = "用户名")]
         public string UserName { get; set; }
+        public string CName { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
