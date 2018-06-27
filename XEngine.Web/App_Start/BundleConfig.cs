@@ -27,7 +27,8 @@ namespace XEngine.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jtemplates").Include("~/Scripts/jquery-jtemplates.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jtemplates").Include(
+                "~/Scripts/jquery-jtemplates.js"));
         }
     }
 }

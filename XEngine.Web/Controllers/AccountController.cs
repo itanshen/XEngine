@@ -12,6 +12,8 @@ using XEngine.Web.Models;
 using System.Web.Security;
 using XEngine.Web.DAL;
 using XEngine.Web.Utility;
+using XEngine.Web.Utility.Filter;
+using PagedList;
 
 namespace XEngine.Web.Controllers
 {
@@ -82,6 +84,66 @@ namespace XEngine.Web.Controllers
             unitOfWork.Save();
             return View();
         }
+
+        [CustomAuthorize]
+        public ActionResult ManageList(string sortOrder, string searchString, string currentFilter, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            UnitOfWork unitOfWork = new UnitOfWork();
+            //var users = iSysUserR.SelectAll();
+            var users = unitOfWork.SysUserRepository.Get();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.UserName.Contains(searchString) || u.Email.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    users = users.OrderByDescending(u => u.UserName);
+                    break;
+                default:
+                    users = users.OrderBy(u => u.UserName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(users.ToPagedList(pageNumber, pageSize));
+
+            //return View(iSysUserR.SelectAll());
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(SysUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Password = EncryptDecrypt.EncryptString(user.Password);
+                user.ModifiedDate = DateTime.Now;
+                unitOfWork.SysUserRepository.Insert(user);
+                unitOfWork.Save();
+                return RedirectToAction("ManageList");
+            }
+            return View();
+        }
+
+
 
     }
 }

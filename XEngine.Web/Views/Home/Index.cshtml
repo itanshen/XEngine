@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 @section scripts{
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-jtemplates.js")"></script>
+    @Scripts.Render("~/bundles/jtemplates")
 }
 <div class="jumbotron">
     <h1>ASP.NET</h1>

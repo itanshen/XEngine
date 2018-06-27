@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using XEngine.Web.DAL;
 using XEngine.Web.Models;
+using PagedList;
+using XEngine.Web.Utility.Filter;
 
 namespace XEngine.Web.Controllers
 {
