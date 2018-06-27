@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<MvcSiteMaps>
-  <MvcSiteMap ParentID="0" Name="主页" Url="/" ID="1"></MvcSiteMap>
-  <MvcSiteMap ParentID="1" Name="组织" Url="/Organization" ID="2"></MvcSiteMap>
-  <MvcSiteMap ParentID="1" Name="关于" Url="/Home/About" ID="3"></MvcSiteMap>
-  <MvcSiteMap ParentID="1" Name="联系方式" Url="/Home/Contact" ID="3"></MvcSiteMap>
-</MvcSiteMaps>
