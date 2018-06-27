@@ -1,0 +1,8 @@
+/.svn
+/trunk/packages
+
+bin
+obj
+APP_Data
+*.user
+*.suo
