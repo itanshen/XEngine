@@ -55,9 +55,9 @@ namespace XEngine.Web.Controllers
             //var weapon = ninjectKernel.Get<IWeapon>();
 
             var warrior1 = new Samurai(weapon);
-            ViewBag.Hit = warrior1.Hit("the evildoers");
+            object Hit = warrior1.Hit("the evildoers");
 
-            return View();
+            return View(Hit);
         }
 
         [HttpPost]

@@ -8,4 +8,10 @@
   <Controller name="Account">
     <Action name="ManageList">Administrators</Action>
   </Controller>
+  <Controller name="User">
+    <Action name="Index">Administrators</Action>
+    <Action name="Create">Administrators</Action>
+    <Action name="Edit">Administrators</Action>
+    <Action name="Delete">Administrators</Action>
+  </Controller>
 </Roles>
