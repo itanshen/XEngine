@@ -59,6 +59,9 @@
     {#/for}
 </textarea>
 
+<h3>TEST</h3>
+<div id="divTest"></div>
+
 <script>
     $(function () {
         $("#btnSearch").click(function () {
@@ -92,5 +95,23 @@
             });
         });
 
+        var ApiUrl = "http://localhost:49115/";
+        $.ajax({
+            type: "get",
+            url: ApiUrl + "api/Charging/GetAllChargingData",
+            data: {},
+            success: function (data, status) {
+                if (status == "success") {
+                    $("#divTest").html(data);
+                }
+            },
+            error: function (e) {
+                $("#divTest").html("Error");
+            },
+            complete: function () {
+
+            }
+
+        });
     });
 </script>
