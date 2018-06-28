@@ -59,7 +59,7 @@
     {#/for}
 </textarea>
 
-<h3>TEST</h3>
+<h3>WebApi跨域</h3>
 <div id="divTest"></div>
 
 <script>
@@ -94,12 +94,13 @@
                 }
             });
         });
-
+        jQuery.support.cors = true;
         var ApiUrl = "http://localhost:49115/";
         $.ajax({
             type: "get",
             url: ApiUrl + "api/Charging/GetAllChargingData",
             data: {},
+            dataType: "json",
             success: function (data, status) {
                 if (status == "success") {
                     $("#divTest").html(data);
