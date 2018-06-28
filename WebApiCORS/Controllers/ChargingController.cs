@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace WebApiCORS.Controllers
 {
+    [System.Web.Http.Cors.EnableCors(origins: "http://localhost:16961", headers: "*", methods: "GET,POST,PUT,DELETE")]
     public class ChargingController : ApiController
     {
         [HttpGet]
