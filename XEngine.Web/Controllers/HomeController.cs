@@ -78,15 +78,40 @@ namespace XEngine.Web.Controllers
                     ModifiedDate = item.ModifiedDate.ToString()
                 });
             }
-
+            List<object> listA = new List<object>();
+            foreach (var item in users)
+            {
+                listA.Add(new
+                {
+                    a = GetObjectPropertyValue(item, "ID")
+                });
+            }
             string result = js.Serialize(new
             {
                 list = listReturn,
+                propertyName = listA,
                 err = "null"
             });
 
             return result;
             //return js.Serialize(listReturn);
+        }
+
+        public static string GetObjectPropertyValue<T>(T t, string propertyname)
+        {
+            string str = "";
+            Type type = typeof(T);
+
+            System.Reflection.PropertyInfo property = type.GetProperty(propertyname);
+
+            if (property == null) return string.Empty;
+
+            object o = property.GetValue(t, null);
+
+            if (o == null) return string.Empty;
+
+            str = o.ToString();
+            return str;
         }
 
         protected override void Dispose(bool disposing)
