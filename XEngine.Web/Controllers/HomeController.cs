@@ -8,6 +8,7 @@ using XEngine.Web.DAL;
 using XEngine.Web.Models;
 using PagedList;
 using XEngine.Web.Utility.Filter;
+using System.Data;
 
 namespace XEngine.Web.Controllers
 {
@@ -86,10 +87,23 @@ namespace XEngine.Web.Controllers
                     a = GetObjectPropertyValue(item, "ID")
                 });
             }
+            List<object> listTable = new List<object>();
+            DataTable dt = GetCreateDataTable();
+            foreach (DataRow item in dt.Rows)
+            {
+                listTable.Add(new
+                {
+                    a = item["a"],
+                    b = item["B"],
+                    c = item["C"]
+                });
+            }
             string result = js.Serialize(new
             {
                 list = listReturn,
-                propertyName = listA,
+                property = listA,
+                propertys = GetPropertiesList<SysUser>(users.ToList(), "ID"),
+                dataTable = listTable,
                 err = "null"
             });
 
@@ -112,6 +126,51 @@ namespace XEngine.Web.Controllers
 
             str = o.ToString();
             return str;
+        }
+        public List<string> GetPropertiesList<T>(List<T> listData, string comboText)
+        {
+            List<string> list = new List<string>();
+            foreach (var item in listData)
+            {
+                Type type = typeof(T);
+                System.Reflection.PropertyInfo property = type.GetProperty(comboText);
+                if (property == null)
+                {
+                    list.Add(string.Empty);
+                }
+                else
+                {
+                    object o = property.GetValue(item, null);
+                    if (o == null)
+                    {
+                        list.Add(string.Empty);
+                    }
+                    else
+                    {
+                        list.Add(o.ToString());
+                    }
+                }
+
+            }
+            return list;
+        }
+        protected DataTable GetCreateDataTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("A", typeof(int));
+            dt.Columns.Add("B", typeof(string));
+            dt.Columns.Add("C", typeof(string));
+
+            for (var i = 0; i < 10; i++)
+            {
+                DataRow dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = "B" + i;
+                dr[2] = "B" + i;
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
         }
 
         protected override void Dispose(bool disposing)
